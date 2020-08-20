@@ -8,10 +8,24 @@ public class AchievementItemUI : MonoBehaviour
 
     public bool isEnabled;
     public Image image;
-    public TMP_Text text;
+    public TMP_Text textLabel;
+
+    public void OnEnable()
+    {
+        if(isEnabled)
+        {
+            EnableAchievement();
+        }
+    }
 
     public void EnableAchievement()
     {
+        isEnabled = true;
 
+        image.gameObject.SetActive(true);
+        image.sprite = thisAchievement.image;
+
+        textLabel.gameObject.SetActive(true);
+        textLabel.text = thisAchievement.key;
     }
 }

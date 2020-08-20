@@ -10,8 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3392305556ef5fb48b5e97ea6d597192, type: 3}
-  m_Name: Teste2
+  m_Name: Teste 2
   m_EditorClassIdentifier: 
-  key: 
+  key: primeiro
   description: 
   image: {fileID: 0}
