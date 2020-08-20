@@ -9,7 +9,19 @@ public class AchievementManager : MonoBehaviour, IGameEventListener<string>
     public List<AchievementItemUI> achievements;
 
     private Dictionary<string, AchievementItemUI> _achievementsDict;
-    
+
+    public void Awake()
+    {
+        achievementEvent.AddListener(this);
+
+        _achievementsDict = new Dictionary<string, AchievementItemUI>();
+
+        foreach (AchievementItemUI achievement in achievements)
+        {
+            _achievementsDict.Add(achievement.thisAchievement.key, achievement);
+        }
+    }
+
     public void OnEventRaised(string value)
     {
         if (_achievementsDict.TryGetValue(value, out AchievementItemUI achievement))
@@ -22,15 +34,8 @@ public class AchievementManager : MonoBehaviour, IGameEventListener<string>
         }
     }
 
-    public void Awake()
+    public void OnDestroy()
     {
-        achievementEvent.AddListener(this);
-
-        _achievementsDict = new Dictionary<string, AchievementItemUI>();
-
-        foreach(AchievementItemUI achievement in achievements)
-        {
-            _achievementsDict.Add(achievement.thisAchievement.key, achievement);
-        }
+        achievementEvent.RemoveListener(this);
     }
 }
